@@ -1,2 +1,2 @@
-# MintMap
+# ServerMintMap
 MintMap,Let's Go!
