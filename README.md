@@ -1,2 +1,2 @@
 # ServerMintMap
-MintMap,Let's Go!
+**MintMap,Let's Go!**
