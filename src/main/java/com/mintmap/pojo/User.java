@@ -36,6 +36,11 @@ public class User {
         this.updatetime = updatetime;
     }
 
+    //新用户登录时使用，添加数据库记录
+    public User(Long phone) {
+        this.phone = phone;
+    }
+
     public User() {
         super();
     }

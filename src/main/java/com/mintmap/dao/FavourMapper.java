@@ -3,6 +3,7 @@ package com.mintmap.dao;
 import com.mintmap.pojo.Favour;
 
 public interface FavourMapper {
+
     int deleteByPrimaryKey(Integer favourid);
 
     int insert(Favour record);
@@ -14,4 +15,5 @@ public interface FavourMapper {
     int updateByPrimaryKeySelective(Favour record);
 
     int updateByPrimaryKey(Favour record);
+
 }
