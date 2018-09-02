@@ -27,7 +27,7 @@
     insert into tb_favour (favourID, uID, tID, 
       favourTime, createTime)
     values (#{favourid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER}, 
-      #{favourtime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP})
+      #{favourtime,jdbcType=TIMESTAMP}, now())
   </insert>
   <insert id="insertSelective" parameterType="com.mintmap.pojo.Favour" >
     insert into tb_favour
@@ -62,7 +62,7 @@
         #{favourtime,jdbcType=TIMESTAMP},
       </if>
       <if test="createtime != null" >
-        #{createtime,jdbcType=TIMESTAMP},
+        now(),
       </if>
     </trim>
   </insert>

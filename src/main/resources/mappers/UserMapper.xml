@@ -35,8 +35,8 @@
       updateTime)
     values (#{uid,jdbcType=INTEGER}, #{phone,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
       #{imghead,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{birthday,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{updatetime,jdbcType=TIMESTAMP})
+      #{birthday,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR}, now(),
+      now())
   </insert>
   <insert id="insertSelective" parameterType="com.mintmap.pojo.User" >
     insert into tb_users
@@ -98,10 +98,10 @@
         #{address,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null" >
-        #{createtime,jdbcType=TIMESTAMP},
+        now(),
       </if>
       <if test="updatetime != null" >
-        #{updatetime,jdbcType=TIMESTAMP},
+        now(),
       </if>
     </trim>
   </insert>
@@ -133,7 +133,7 @@
         createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatetime != null" >
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+        updateTime = now(),
       </if>
     </set>
     where uID = #{uid,jdbcType=INTEGER}
@@ -148,7 +148,7 @@
       birthday = #{birthday,jdbcType=TIMESTAMP},
       address = #{address,jdbcType=VARCHAR},
       createTime = #{createtime,jdbcType=TIMESTAMP},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+      updateTime = now()
     where uID = #{uid,jdbcType=INTEGER}
   </update>
 </mapper>
