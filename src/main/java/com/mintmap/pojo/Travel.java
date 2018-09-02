@@ -2,7 +2,7 @@ package com.mintmap.pojo;
 
 import java.util.Date;
 
-public class Travels {
+public class Travel {
     private Integer tid;
 
     private Integer uid;
@@ -21,7 +21,7 @@ public class Travels {
 
     private Long favour;
 
-    public Travels(Integer tid, Integer uid, String tname, Date createtime, Date endtime, String coverimg, Integer ispublic, Long count, Long favour) {
+    public Travel(Integer tid, Integer uid, String tname, Date createtime, Date endtime, String coverimg, Integer ispublic, Long count, Long favour) {
         this.tid = tid;
         this.uid = uid;
         this.tname = tname;
@@ -33,7 +33,7 @@ public class Travels {
         this.favour = favour;
     }
 
-    public Travels() {
+    public Travel() {
         super();
     }
 

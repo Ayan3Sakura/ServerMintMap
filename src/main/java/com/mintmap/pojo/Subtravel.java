@@ -2,7 +2,7 @@ package com.mintmap.pojo;
 
 import java.util.Date;
 
-public class Subtravels {
+public class Subtravel {
     private Integer sid;
 
     private Integer tid;
@@ -21,7 +21,7 @@ public class Subtravels {
 
     private Double latitude;
 
-    public Subtravels(Integer sid, Integer tid, Date time, String type, String imghead, String text, String position, Double longitude, Double latitude) {
+    public Subtravel(Integer sid, Integer tid, Date time, String type, String imghead, String text, String position, Double longitude, Double latitude) {
         this.sid = sid;
         this.tid = tid;
         this.time = time;
@@ -33,7 +33,7 @@ public class Subtravels {
         this.latitude = latitude;
     }
 
-    public Subtravels() {
+    public Subtravel() {
         super();
     }
 
