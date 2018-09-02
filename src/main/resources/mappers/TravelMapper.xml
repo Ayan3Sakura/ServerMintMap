@@ -1,33 +1,33 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mintmap.dao.TravelMapper" >
-  <resultMap id="BaseResultMap" type="com.mintmap.pojo.Travel" >
-    <constructor >
-      <idArg column="tID" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="uID" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="tName" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="endTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="coverImg" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="isPublic" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="count" jdbcType="BIGINT" javaType="java.lang.Long" />
-      <arg column="favour" jdbcType="BIGINT" javaType="java.lang.Long" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mintmap.dao.TravelMapper">
+  <resultMap id="BaseResultMap" type="com.mintmap.pojo.Travel">
+    <constructor>
+      <idArg column="tID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="uID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="endTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="coverImg" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="isPublic" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="count" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="favour" javaType="java.lang.Long" jdbcType="BIGINT" />
     </constructor>
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     tID, uID, tName, createTime, endTime, coverImg, isPublic, count, favour
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tb_travels
     where tID = #{tid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_travels
     where tID = #{tid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.mintmap.pojo.Travel" >
+  <insert id="insert" parameterType="com.mintmap.pojo.Travel">
     insert into tb_travels (tID, uID, tName, 
       createTime, endTime, coverImg, 
       isPublic, count, favour
@@ -37,98 +37,237 @@
       #{ispublic,jdbcType=INTEGER}, #{count,jdbcType=BIGINT}, #{favour,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.mintmap.pojo.Travel" >
+  <insert id="insertSelective" parameterType="com.mintmap.pojo.Travel">
     insert into tb_travels
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="tid != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tid != null">
         tID,
       </if>
-      <if test="uid != null" >
+      <if test="uid != null">
         uID,
       </if>
-      <if test="tname != null" >
+      <if test="tname != null">
         tName,
       </if>
-      <if test="createtime != null" >
+      <if test="createtime != null">
         createTime,
       </if>
-      <if test="endtime != null" >
+      <if test="endtime != null">
         endTime,
       </if>
-      <if test="coverimg != null" >
+      <if test="coverimg != null">
         coverImg,
       </if>
-      <if test="ispublic != null" >
+      <if test="ispublic != null">
         isPublic,
       </if>
-      <if test="count != null" >
+      <if test="count != null">
         count,
       </if>
-      <if test="favour != null" >
+      <if test="favour != null">
         favour,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="tid != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tid != null">
         #{tid,jdbcType=INTEGER},
       </if>
-      <if test="uid != null" >
+      <if test="uid != null">
         #{uid,jdbcType=INTEGER},
       </if>
-      <if test="tname != null" >
+      <if test="tname != null">
         #{tname,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null" >
+      <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="endtime != null" >
+      <if test="endtime != null">
         #{endtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="coverimg != null" >
+      <if test="coverimg != null">
         #{coverimg,jdbcType=VARCHAR},
       </if>
-      <if test="ispublic != null" >
+      <if test="ispublic != null">
         #{ispublic,jdbcType=INTEGER},
       </if>
-      <if test="count != null" >
+      <if test="count != null">
         #{count,jdbcType=BIGINT},
       </if>
-      <if test="favour != null" >
+      <if test="favour != null">
         #{favour,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mintmap.pojo.Travel" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.mintmap.pojo.Travel">
     update tb_travels
-    <set >
-      <if test="uid != null" >
+    <set>
+      <if test="uid != null">
         uID = #{uid,jdbcType=INTEGER},
       </if>
-      <if test="tname != null" >
+      <if test="tname != null">
         tName = #{tname,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null" >
+      <if test="createtime != null">
         createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="endtime != null" >
+      <if test="endtime != null">
         endTime = #{endtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="coverimg != null" >
+      <if test="coverimg != null">
         coverImg = #{coverimg,jdbcType=VARCHAR},
       </if>
-      <if test="ispublic != null" >
+      <if test="ispublic != null">
         isPublic = #{ispublic,jdbcType=INTEGER},
       </if>
-      <if test="count != null" >
+      <if test="count != null">
         count = #{count,jdbcType=BIGINT},
       </if>
-      <if test="favour != null" >
+      <if test="favour != null">
         favour = #{favour,jdbcType=BIGINT},
       </if>
     </set>
     where tID = #{tid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mintmap.pojo.Travel" >
+  <update id="updateByPrimaryKey" parameterType="com.mintmap.pojo.Travel">
+    update tb_travels
+    set uID = #{uid,jdbcType=INTEGER},
+      tName = #{tname,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      endTime = #{endtime,jdbcType=TIMESTAMP},
+      coverImg = #{coverimg,jdbcType=VARCHAR},
+      isPublic = #{ispublic,jdbcType=INTEGER},
+      count = #{count,jdbcType=BIGINT},
+      favour = #{favour,jdbcType=BIGINT}
+    where tID = #{tid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.mintmap.pojo.Travel">
+    <constructor>
+      <idArg column="tID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="uID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="tName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="endTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="coverImg" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="isPublic" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="count" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="favour" javaType="java.lang.Long" jdbcType="BIGINT" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    tID, uID, tName, createTime, endTime, coverImg, isPublic, count, favour
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_travels
+    where tID = #{tid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_travels
+    where tID = #{tid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mintmap.pojo.Travel">
+    insert into tb_travels (tID, uID, tName, 
+      createTime, endTime, coverImg, 
+      isPublic, count, favour
+      )
+    values (#{tid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{coverimg,jdbcType=VARCHAR}, 
+      #{ispublic,jdbcType=INTEGER}, #{count,jdbcType=BIGINT}, #{favour,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mintmap.pojo.Travel">
+    insert into tb_travels
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tid != null">
+        tID,
+      </if>
+      <if test="uid != null">
+        uID,
+      </if>
+      <if test="tname != null">
+        tName,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="endtime != null">
+        endTime,
+      </if>
+      <if test="coverimg != null">
+        coverImg,
+      </if>
+      <if test="ispublic != null">
+        isPublic,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="favour != null">
+        favour,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tid != null">
+        #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="tname != null">
+        #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="coverimg != null">
+        #{coverimg,jdbcType=VARCHAR},
+      </if>
+      <if test="ispublic != null">
+        #{ispublic,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=BIGINT},
+      </if>
+      <if test="favour != null">
+        #{favour,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mintmap.pojo.Travel">
+    update tb_travels
+    <set>
+      <if test="uid != null">
+        uID = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="tname != null">
+        tName = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        endTime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="coverimg != null">
+        coverImg = #{coverimg,jdbcType=VARCHAR},
+      </if>
+      <if test="ispublic != null">
+        isPublic = #{ispublic,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=BIGINT},
+      </if>
+      <if test="favour != null">
+        favour = #{favour,jdbcType=BIGINT},
+      </if>
+    </set>
+    where tID = #{tid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mintmap.pojo.Travel">
     update tb_travels
     set uID = #{uid,jdbcType=INTEGER},
       tName = #{tname,jdbcType=VARCHAR},

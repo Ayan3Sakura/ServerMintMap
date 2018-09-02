@@ -21,7 +21,9 @@ public class Subtravel {
 
     private Double latitude;
 
-    public Subtravel(Integer sid, Integer tid, Date time, String type, String imghead, String text, String position, Double longitude, Double latitude) {
+    private Date createtime;
+
+    public Subtravel(Integer sid, Integer tid, Date time, String type, String imghead, String text, String position, Double longitude, Double latitude, Date createtime) {
         this.sid = sid;
         this.tid = tid;
         this.time = time;
@@ -31,6 +33,7 @@ public class Subtravel {
         this.position = position;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.createtime = createtime;
     }
 
     public Subtravel() {
@@ -107,5 +110,13 @@ public class Subtravel {
 
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 }
